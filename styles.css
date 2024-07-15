@@ -1,0 +1,358 @@
+:root {
+    --primary-color: #00BF63;
+    --secondary-color: #f8f8f8;
+    --text-color: #333;
+    --dark-text-color: black;
+    --light-text-color: #555;
+    --white: #fff;
+    --grey: #ddd;
+    --hover-bg-color: #f8f8f8;
+    --header-bg-color: #00BF63;
+    --button-hover-bg-color: #028a3d;
+    --navbar-hover-color: #028a3d;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+header {
+    background-color: var(--header-bg-color);
+    border-bottom: 1px solid var(--grey);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: var(--primary-color);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-left img.logo {
+    height: 50px;
+    margin-right: 20px;
+}
+
+.header-center input {
+    width: 60%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--grey);
+}
+
+.header-right .header-icon {
+    background: none;
+    border: none;
+    font-size: 24px;
+    margin-left: 20px;
+    cursor: pointer;
+    color: var(--white);
+}
+
+.header-right .cart-icon {
+    height: 30px;
+    width: 30px;
+}
+
+.navbar {
+    background-color: var(--white);
+    border-bottom: 1px solid var(--grey);
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.navbar ul li {
+    position: relative;
+    margin: 0 15px;
+    cursor: pointer;
+    transition: color 0.3s;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.navbar ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar ul li:hover {
+    background-color: var(--hover-bg-color);
+}
+
+.navbar ul li a:hover {
+    color: var(--primary-color);
+}
+
+nav ul li .sub-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--white);
+    color: var(--primary-color);
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+nav ul li:hover .sub-menu {
+    display: block;
+}
+
+.categories {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+main {
+    padding: 30px;
+}
+
+.product {
+    display: inline-block;
+    width: 23%;
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid var (--grey);
+    border-radius: 8px;
+    background-color: var(--white);
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.product h2 {
+    font-size: 1.2em;
+    margin: 15px 0;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.product p {
+    margin: 10px 0;
+    color: var(--light-text-color);
+    text-align: center;
+}
+
+.product button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product button:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+.cart-item {
+    border: 1px solid var(--grey);
+    padding: 15px;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    background-color: var(--white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+    border-radius: 4px;
+}
+
+.cart-item h2 {
+    font-size: 1em;
+    margin: 0;
+    flex: 1;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.cart-item p {
+    margin: 5px 0;
+    color: var(--light-text-color);
+    text-align: center;
+}
+
+.cart-item input[type="number"] {
+    width: 50px;
+    margin-right: 20px;
+    padding: 5px;
+    border: 1px solid var(--grey);
+    border-radius: 4px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 15px 0;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.product-details {
+    margin: 40px;
+}
+
+.product-details h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.product-images {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+.product-images .main-image {
+    width: 600px;
+    height: 400px;
+    object-fit: cover;
+    margin-right: 30px;
+    border-radius: 8px;
+}
+
+.thumbnail-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.thumbnail-container img {
+    width: 100px;
+    height: 66px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: transform 0.3s;
+}
+
+.thumbnail-container img:hover {
+    transform: scale(1.1);
+}
+
+.description {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: var(--light-text-color);
+    text-align: center;
+}
+
+.price {
+    font-size: 2em;
+    color: green;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1em;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg-color);
+}
+
+.product-reviews {
+    margin-top: 40px;
+}
+
+.product-reviews h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.review {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+}
+
+.review p {
+    margin: 5px 0;
+    color: var (--light-text-color);
+    text-align: center;
+}
+
+.review strong {
+    color: var (--dark-text-color);
+}
+
+.additional-info {
+    margin-top: 40px;
+}
+
+.additional-info h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: var (--text-color);
+    text-align: center;
+}
