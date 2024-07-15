@@ -13,12 +13,12 @@ function loadHomePage() {
 
 function loadTrendingCategories() {
     const trendingCategories = [
-        { name: "Chef's Kiss", image: "path/to/image1.jpg" },
-        { name: "Colorful Vintage Glassware", image: "path/to/image2.jpg" },
-        { name: "Creative Couples' Portraits", image: "path/to/image3.jpg" },
-        { name: "Garden Girl", image: "path/to/image4.jpg" },
-        { name: "Charm Necklaces", image: "path/to/image5.jpg" },
-        { name: "Chrome Decor", image: "path/to/image6.jpg" }
+        { name: "Chef's Kiss", image: "https://i.etsystatic.com/5265180/c/2000/2000/0/500/il/994783/4983561629/il_300x300.4983561629_4c20.jpg" },
+        { name: "Colorful Vintage Glassware", image: "https://i.etsystatic.com/6489157/r/il/a79c02/6160178767/il_300x300.6160178767_7msq.jpg" },
+        { name: "Creative Couples' Portraits", image: "https://i.etsystatic.com/35102557/r/il/a688f4/4347476071/il_300x300.4347476071_9kt1.jpg" },
+        { name: "Garden Girl", image: "https://i.etsystatic.com/7558906/r/il/fd0916/5104177431/il_300x300.5104177431_qsyn.jpg" },
+        { name: "Charm Necklaces", image: "https://i.etsystatic.com/47595479/c/2047/2047/0/1/il/45e9de/6060672661/il_300x300.6060672661_j13b.jpg" },
+        { name: "Chrome Decor", image: "https://i.etsystatic.com/24611060/r/il/20d8d4/5986621082/il_300x300.5986621082_r0sl.jpg" }
     ];
 
     const trendContainer = document.querySelector('.trend-categories');
