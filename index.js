@@ -2,13 +2,35 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('search').addEventListener('input', searchProducts);
     document.getElementById('cartButton').addEventListener('click', showCart);
     document.querySelector('.logo').addEventListener('click', loadHomePage);
+    loadTrendingCategories();
     loadRecommendedProducts();
-    loadCategories();
 });
 
 function loadHomePage() {
-    loadRecommendedProducts();
     document.querySelector('.recommended-products').innerHTML = ''; // Reset recommended products section
+    loadRecommendedProducts();
+}
+
+function loadTrendingCategories() {
+    const trendingCategories = [
+        { name: "Chef's Kiss", image: "path/to/image1.jpg" },
+        { name: "Colorful Vintage Glassware", image: "path/to/image2.jpg" },
+        { name: "Creative Couples' Portraits", image: "path/to/image3.jpg" },
+        { name: "Garden Girl", image: "path/to/image4.jpg" },
+        { name: "Charm Necklaces", image: "path/to/image5.jpg" },
+        { name: "Chrome Decor", image: "path/to/image6.jpg" }
+    ];
+
+    const trendContainer = document.querySelector('.trend-categories');
+    trendingCategories.forEach(category => {
+        const categoryDiv = document.createElement('div');
+        categoryDiv.className = 'trend-category';
+        categoryDiv.innerHTML = `
+            <img src="${category.image}" alt="${category.name}">
+            <p>${category.name}</p>
+        `;
+        trendContainer.appendChild(categoryDiv);
+    });
 }
 
 function loadRecommendedProducts() {

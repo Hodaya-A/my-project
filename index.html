@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Onlin-Store</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <header>
@@ -12,19 +13,42 @@
       <div class="header-left">
         <a href="index.html" class="logo-link">
           <img src="Tag Cart Virtual Shop Logo .png" alt="Logo" class="logo">
-        </a>      </div>
+        </a>
+      </div>
       <div class="header-center">
-        <input type="text" id="search" placeholder="Search...">
+        <input type="text" id="search" placeholder="Search for anything">
+        <button class="search-button"><i class="fas fa-search"></i></button>
       </div>
       <div class="header-right">
-        <button id="cartButton" class="header-icon">🛒</button>
+        <button id="cartButton" class="header-icon">
+          <i class="fas fa-shopping-cart"></i>
+        </button>
+        <button class="header-icon"><i class="fas fa-heart"></i></button>
+        <button class="header-icon"><i class="fas fa-gift"></i></button>
+        <button class="header-icon"><i class="fas fa-bell"></i></button>
+        <button class="header-icon"><i class="fas fa-user"></i></button>
       </div>
     </div>
+    <div class="announcement">
+      <p>Now in the app: special back-to-school deals up to 60% OFF!</p>
+    </div>
     <div class="navbar">
-      <ul class="categories" id="category-list"></ul>
+      <ul class="categories" id="category-list">
+        <li><a href="#">Gift Mode</a></li>
+        <li><a href="#">Back-to-School Savings</a></li>
+        <li><a href="#">Home Favorites</a></li>
+        <li><a href="#">Fashion Finds</a></li>
+        <li><a href="#">Registry</a></li>
+      </ul>
     </div>
   </header>
   <main id="content">
+    <section class="trending">
+      <h1>Check out the season's biggest trends</h1>
+      <div class="trend-categories">
+        <!-- Trend categories will be injected here by JavaScript -->
+      </div>
+    </section>
     <section class="recommended-products"></section>
   </main>
   <footer>
