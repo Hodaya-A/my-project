@@ -34,22 +34,20 @@ function loadTrendingCategories() {
 }
 
 function loadRecommendedProducts() {
-    fetch('https://dummyjson.com/products/category-list')
-        .then(response => response.json())
-        .then(categories => {
-            const categoryList = document.getElementById('category-list');
-            categoryList.innerHTML = ''; // Clear any existing categories
-            categories.forEach(category => {
-                const li = document.createElement('li');
-                li.textContent = category; // Assuming category is a string
-                li.addEventListener('click', () => loadProductsByCategory(category));
-                categoryList.appendChild(li);
-                
-                // Load recommended products for each category
-                loadRecommendedProductsByCategory(category);
-            });
-        })
-        .catch(error => console.error('Error fetching categories:', error));
+    const categories = [
+        "mens-shirts", "mens-shoes", "mens-watches",
+        "womens-bags", "womens-dresses", "womens-jewellery",
+        "womens-shoes", "womens-watches", "tops",
+        "sunglasses", "beauty", "skin-care",
+        "fragrances", "laptops", "smartphones",
+        "tablets", "mobile-accessories", "furniture",
+        "home-decoration", "kitchen-accessories", "sports-accessories",
+        "motorcycle", "vehicle", "groceries"
+    ];
+
+    categories.forEach(category => {
+        loadRecommendedProductsByCategory(category);
+    });
 }
 
 function loadRecommendedProductsByCategory(category) {
@@ -62,7 +60,7 @@ function loadRecommendedProductsByCategory(category) {
 }
 
 function displayRecommendedProductsByCategory(category, products) {
-    const content = document.querySelector('.recommended-products');
+    const content = document.querySelector(`#${category}`);
     
     const categorySection = document.createElement('div');
     categorySection.className = 'category-section';
@@ -205,33 +203,6 @@ function searchProducts(event) {
             }
         })
         .catch(error => console.error('Error searching products:', error));
-}
-
-function loadCategories() {
-    fetch('https://dummyjson.com/products/category-list')
-        .then(response => response.json())
-        .then(categories => {
-            console.log('Categories:', categories); // Debugging log
-            const categoryList = document.getElementById('category-list');
-            categoryList.innerHTML = ''; // Clear any existing categories
-            categories.forEach(category => {
-                console.log('Category:', category); // Log each category to see its structure
-                const li = document.createElement('li');
-                li.textContent = category; // Assuming category is a string
-                li.addEventListener('click', () => loadProductsByCategory(category));
-                categoryList.appendChild(li);
-            });
-        })
-        .catch(error => console.error('Error fetching categories:', error));
-}
-
-function loadProductsByCategory(category) {
-    fetch(`https://dummyjson.com/products/category/${encodeURIComponent(category)}`)
-        .then(response => response.json())
-        .then(data => {
-            displayProducts(data.products);
-        })
-        .catch(error => console.error('Error fetching products by category:', error));
 }
 
 let cart = [];

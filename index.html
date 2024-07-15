@@ -33,12 +33,73 @@
       <p>Now in the app: special back-to-school deals up to 60% OFF!</p>
     </div>
     <div class="navbar">
-      <ul class="categories" id="category-list">
-        <li><a href="#">Gift Mode</a></li>
-        <li><a href="#">Back-to-School Savings</a></li>
-        <li><a href="#">Home Favorites</a></li>
-        <li><a href="#">Fashion Finds</a></li>
-        <li><a href="#">Registry</a></li>
+      <ul class="categories">
+        <li class="dropdown">
+          <a href="#">Fashion</a>
+          <ul class="dropdown-content">
+            <li><a href="#">Men</a>
+              <ul>
+                <li><a href="#mens-shirts">mens-shirts</a></li>
+                <li><a href="#mens-shoes">mens-shoes</a></li>
+                <li><a href="#mens-watches">mens-watches</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Women</a>
+              <ul>
+                <li><a href="#womens-bags">womens-bags</a></li>
+                <li><a href="#womens-dresses">womens-dresses</a></li>
+                <li><a href="#womens-jewellery">womens-jewellery</a></li>
+                <li><a href="#womens-shoes">womens-shoes</a></li>
+                <li><a href="#womens-watches">womens-watches</a></li>
+                <li><a href="#tops">tops</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Shared</a>
+              <ul>
+                <li><a href="#sunglasses">sunglasses</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Beauty & Care</a>
+          <ul class="dropdown-content">
+            <li><a href="#beauty">beauty</a></li>
+            <li><a href="#skin-care">skin-care</a></li>
+            <li><a href="#fragrances">fragrances</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Technology & Electronics</a>
+          <ul class="dropdown-content">
+            <li><a href="#laptops">laptops</a></li>
+            <li><a href="#smartphones">smartphones</a></li>
+            <li><a href="#tablets">tablets</a></li>
+            <li><a href="#mobile-accessories">mobile-accessories</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Home & Garden</a>
+          <ul class="dropdown-content">
+            <li><a href="#furniture">furniture</a></li>
+            <li><a href="#home-decoration">home-decoration</a></li>
+            <li><a href="#kitchen-accessories">kitchen-accessories</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Leisure & Sports</a>
+          <ul class="dropdown-content">
+            <li><a href="#sports-accessories">sports-accessories</a></li>
+            <li><a href="#motorcycle">motorcycle</a></li>
+            <li><a href="#vehicle">vehicle</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Food</a>
+          <ul class="dropdown-content">
+            <li><a href="#groceries">groceries</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </header>
@@ -46,11 +107,35 @@
     <section class="trending">
       <h1>Check out the season's biggest trends</h1>
       <div class="trend-categories">
-        
         <!-- Trend categories will be injected here by JavaScript -->
       </div>
     </section>
-    <section class="recommended-products"></section>
+    <section class="recommended-products">
+      <div id="mens-shirts"></div>
+      <div id="mens-shoes"></div>
+      <div id="mens-watches"></div>
+      <div id="womens-bags"></div>
+      <div id="womens-dresses"></div>
+      <div id="womens-jewellery"></div>
+      <div id="womens-shoes"></div>
+      <div id="womens-watches"></div>
+      <div id="tops"></div>
+      <div id="sunglasses"></div>
+      <div id="beauty"></div>
+      <div id="skin-care"></div>
+      <div id="fragrances"></div>
+      <div id="laptops"></div>
+      <div id="smartphones"></div>
+      <div id="tablets"></div>
+      <div id="mobile-accessories"></div>
+      <div id="furniture"></div>
+      <div id="home-decoration"></div>
+      <div id="kitchen-accessories"></div>
+      <div id="sports-accessories"></div>
+      <div id="motorcycle"></div>
+      <div id="vehicle"></div>
+      <div id="groceries"></div>
+    </section>
   </main>
   <footer>
     <p>Contact Us | Help</p>
