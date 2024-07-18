@@ -2,52 +2,32 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('search').addEventListener('input', searchProducts);
     document.getElementById('cartButton').addEventListener('click', showCart);
     document.querySelector('.logo').addEventListener('click', loadHomePage);
-    loadTrendingCategories();
     loadRecommendedProducts();
+    loadCategories();
 });
 
 function loadHomePage() {
-    document.querySelector('.recommended-products').innerHTML = ''; // Reset recommended products section
     loadRecommendedProducts();
-}
-
-function loadTrendingCategories() {
-    const trendingCategories = [
-        { name: "Chef's Kiss", image: "https://i.etsystatic.com/5265180/c/2000/2000/0/500/il/994783/4983561629/il_300x300.4983561629_4c20.jpg" },
-        { name: "Colorful Vintage Glassware", image: "https://i.etsystatic.com/6489157/r/il/a79c02/6160178767/il_300x300.6160178767_7msq.jpg" },
-        { name: "Creative Couples' Portraits", image: "https://i.etsystatic.com/35102557/r/il/a688f4/4347476071/il_300x300.4347476071_9kt1.jpg" },
-        { name: "Garden Girl", image: "https://i.etsystatic.com/7558906/r/il/fd0916/5104177431/il_300x300.5104177431_qsyn.jpg" },
-        { name: "Charm Necklaces", image: "https://i.etsystatic.com/47595479/c/2047/2047/0/1/il/45e9de/6060672661/il_300x300.6060672661_j13b.jpg" },
-        { name: "Chrome Decor", image: "https://i.etsystatic.com/24611060/r/il/20d8d4/5986621082/il_300x300.5986621082_r0sl.jpg" }
-    ];
-
-    const trendContainer = document.querySelector('.trend-categories');
-    trendingCategories.forEach(category => {
-        const categoryDiv = document.createElement('div');
-        categoryDiv.className = 'trend-category';
-        categoryDiv.innerHTML = `
-            <img src="${category.image}" alt="${category.name}">
-            <p>${category.name}</p>
-        `;
-        trendContainer.appendChild(categoryDiv);
-    });
+    document.querySelector('.recommended-products').innerHTML = ''; // Reset recommended products section
 }
 
 function loadRecommendedProducts() {
-    const categories = [
-        "mens-shirts", "mens-shoes", "mens-watches",
-        "womens-bags", "womens-dresses", "womens-jewellery",
-        "womens-shoes", "womens-watches", "tops",
-        "sunglasses", "beauty", "skin-care",
-        "fragrances", "laptops", "smartphones",
-        "tablets", "mobile-accessories", "furniture",
-        "home-decoration", "kitchen-accessories", "sports-accessories",
-        "motorcycle", "vehicle", "groceries"
-    ];
-
-    categories.forEach(category => {
-        loadRecommendedProductsByCategory(category);
-    });
+    fetch('https://dummyjson.com/products/category-list')
+        .then(response => response.json())
+        .then(categories => {
+            const categoryList = document.getElementById('category-list');
+            categoryList.innerHTML = ''; // Clear any existing categories
+            categories.forEach(category => {
+                const li = document.createElement('li');
+                li.textContent = category; // Assuming category is a string
+                li.addEventListener('click', () => loadProductsByCategory(category));
+                categoryList.appendChild(li);
+                
+                // Load recommended products for each category
+                loadRecommendedProductsByCategory(category);
+            });
+        })
+        .catch(error => console.error('Error fetching categories:', error));
 }
 
 function loadRecommendedProductsByCategory(category) {
@@ -60,7 +40,7 @@ function loadRecommendedProductsByCategory(category) {
 }
 
 function displayRecommendedProductsByCategory(category, products) {
-    const content = document.querySelector(`#${category}`);
+    const content = document.querySelector('.recommended-products');
     
     const categorySection = document.createElement('div');
     categorySection.className = 'category-section';
@@ -103,7 +83,6 @@ function displayRecommendedProductsByCategory(category, products) {
 
     content.appendChild(categorySection);
 }
-
 function displayProducts(products) {
     const content = document.getElementById('content');
     content.innerHTML = '<h1>Products</h1>';
@@ -183,7 +162,6 @@ function showProductDetails(product) {
         </div>
     `;
 }
-
 function searchProducts(event) {
     const query = event.target.value.trim();
     if (query === '') {
@@ -205,8 +183,34 @@ function searchProducts(event) {
         .catch(error => console.error('Error searching products:', error));
 }
 
-let cart = [];
+function loadCategories() {
+    fetch('https://dummyjson.com/products/category-list')
+        .then(response => response.json())
+        .then(categories => {
+            console.log('Categories:', categories); // Debugging log
+            const categoryList = document.getElementById('category-list');
+            categoryList.innerHTML = ''; // Clear any existing categories
+            categories.forEach(category => {
+                console.log('Category:', category); // Log each category to see its structure
+                const li = document.createElement('li');
+                li.textContent = category; // Assuming category is a string
+                li.addEventListener('click', () => loadProductsByCategory(category));
+                categoryList.appendChild(li);
+            });
+        })
+        .catch(error => console.error('Error fetching categories:', error));
+}
 
+function loadProductsByCategory(category) {
+    fetch(`https://dummyjson.com/products/category/${encodeURIComponent(category)}`)
+        .then(response => response.json())
+        .then(data => {
+            displayProducts(data.products);
+        })
+        .catch(error => console.error('Error fetching products by category:', error));
+}
+
+let cart = [];
 function addToCart(product) {
     const existingProduct = cart.find(item => item.id === product.id);
 
