@@ -162,6 +162,7 @@ function showWishlist() {
     });
 }
 
+
 function displayProducts(products) {
     const content = document.getElementById('content');
     content.innerHTML = '<h1>Products</h1>';
@@ -212,15 +213,23 @@ function displayProducts(products) {
     });
 }
 
+
+
+
+
+
+
+
+
 function showProductDetails(product) {
     const content = document.getElementById('content');
     content.innerHTML = `
         <div class="product-details">
             <h1>${product.title}</h1>
             <div class="product-images">
-                <img src="${product.images[0]}" alt="${product.title}" class="main-image">
+                <img src="${product.images[0]}" alt="${product.title}" class="main-image" id="mainImage">
                 <div class="thumbnail-container">
-                    ${product.images.map(img => `<img src="${img}" alt="${product.title}" class="thumbnail">`).join('')}
+                    ${product.images.map(img => `<img src="${img}" alt="${product.title}" class="thumbnail" onclick="changeMainImage('${img}')">`).join('')}
                 </div>
             </div>
             <p class="description">${product.description}</p>
@@ -251,6 +260,36 @@ function showProductDetails(product) {
         </div>
     `;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function searchProducts(event) {
     const query = event.target.value.trim();
@@ -317,6 +356,7 @@ function addToCart(product) {
     }
 
     alert(`${product.title} has been added to your cart.`);
+    updateCartTotal();
 }
 
 function showCart() {
@@ -341,6 +381,11 @@ function showCart() {
         content.appendChild(div);
     });
 
+    const totalDiv = document.createElement('div');
+    totalDiv.className = 'cart-total';
+    totalDiv.innerHTML = `<h2>Total: $${calculateCartTotal()} USD</h2>`;
+    content.appendChild(totalDiv);
+
     content.innerHTML += `<button onclick="checkout()">Checkout</button>`;
 
     document.querySelectorAll('.quantity-input').forEach(input => {
@@ -357,11 +402,23 @@ function updateQuantity(event) {
     if (product) {
         product.quantity = newQuantity;
     }
+    updateCartTotal();
 }
 
 function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
     showCart();
+}
+
+function calculateCartTotal() {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+}
+
+function updateCartTotal() {
+    const totalDiv = document.querySelector('.cart-total h2');
+    if (totalDiv) {
+        totalDiv.textContent = `Total: $${calculateCartTotal()} USD`;
+    }
 }
 
 function checkout() {
@@ -378,6 +435,9 @@ function checkout() {
     `;
 
     document.getElementById('checkout-form').addEventListener('submit', processPurchase);
+}
+function changeMainImage(src) {
+    document.getElementById('mainImage').src = src;
 }
 
 function processPurchase(event) {
@@ -448,3 +508,4 @@ function displayRecommendedProductsByCategory(category, products) {
 
     content.appendChild(categorySection);
 }
+
