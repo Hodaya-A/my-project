@@ -260,6 +260,15 @@ function showProductDetails(product) {
         </div>
     `;
 }
+function toggleCategories() {
+    const categoryList = document.getElementById('category-list');
+    if (categoryList.style.display === 'flex' || categoryList.style.display === 'block') {
+        categoryList.style.display = 'none';
+    } else {
+        categoryList.style.display = 'flex';
+        categoryList.style.flexDirection = 'column';
+    }
+}
 
 
 

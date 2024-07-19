@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #fff;
+    --primary-color: #f8f8f8;
     --secondary-color: #f8f8f8;
     --text-color: #333;
     --dark-text-color: #333;
@@ -7,13 +7,11 @@
     --white: #fff;
     --grey: #ddd;
     --hover-bg-color: #f8f8f8;
-    --header-bg-color: #fff; /* Changed to white */
+    --header-bg-color: #fff;
     --button-hover-bg-color: #028a3d;
     --navbar-hover-color: #028a3d;
-    --search-button-color: #f5671a; /* Search button background color */
-    --search-icon-color: #fff; /* Search icon color */
-    --primary-color: #f8f8f8; /* Updated to green */
-    --button-hover-bg-color: #026934; /* Darker green for hover */
+    --search-button-color: #f5671a;
+    --search-icon-color: #fff;
 }
 
 body {
@@ -65,8 +63,7 @@ header {
 }
 
 .header-left img.logo {
-    height: 50px;
-    height: 40px;
+    height: 130px;
     margin-right: 20px;
 }
 
@@ -93,7 +90,7 @@ header {
     border: none;
     cursor: pointer;
     margin-left: 10px;
-    color: #666; /* Changed to gray */
+    color: #666;
 }
 
 .header-right .header-icon {
@@ -102,7 +99,7 @@ header {
     font-size: 24px;
     margin-left: 20px;
     cursor: pointer;
-    color: #666; /* Changed to gray */
+    color: #666;
 }
 
 .header-right .header-icon img {
@@ -120,6 +117,17 @@ header {
 .navbar {
     background-color: var(--white);
     border-bottom: 1px solid var(--grey);
+    position: relative;
+}
+
+.navbar .categories-toggle {
+    display: none;
+    background-color: var(--search-button-color);
+    color: var(--search-icon-color);
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px 20px;
 }
 
 .navbar ul {
@@ -185,7 +193,6 @@ main {
     width: 23%;
     margin: 10px;
     padding: 20px;
-    border: 1px solid var(--grey);
     border: 1px solid var(--grey);
     border-radius: 8px;
     background-color: var(--white);
@@ -521,7 +528,18 @@ button:hover {
         width: 100%;
     }
 
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar .categories-toggle {
+        display: block;
+    }
+
     .navbar ul {
+        display: none;
         flex-direction: column;
         align-items: flex-start;
         padding-left: 20px;
