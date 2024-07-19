@@ -2,9 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('search').addEventListener('input', searchProducts);
     document.getElementById('cartButton').addEventListener('click', showCart);
     document.querySelector('.logo').addEventListener('click', loadHomePage);
+    document.getElementById('wishlistButton').addEventListener('click', showWishlist);
     loadRecommendedProducts();
     loadCategories();
 });
+
+let wishlist = [];
 
 function loadHomePage() {
     loadRecommendedProducts();
@@ -70,12 +73,24 @@ function displayRecommendedProductsByCategory(category, products) {
         infoDiv.appendChild(price);
         
         const addButton = document.createElement('button');
+        addButton.classList.add('add-to-cart-button');
         addButton.textContent = 'Add to Cart';
         addButton.addEventListener('click', (event) => {
             event.stopPropagation();
             addToCart(product);
         });
         infoDiv.appendChild(addButton);
+
+        const heartButton = document.createElement('button');
+        heartButton.classList.add('heart-button');
+        if (wishlist.some(item => item.id === product.id)) {
+            heartButton.classList.add('filled');
+        }
+        heartButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            toggleWishlist(product, heartButton);
+        });
+        infoDiv.appendChild(heartButton);
         
         div.appendChild(infoDiv);
         categorySection.appendChild(div);
@@ -83,6 +98,70 @@ function displayRecommendedProductsByCategory(category, products) {
 
     content.appendChild(categorySection);
 }
+
+function toggleWishlist(product, heartButton) {
+    const index = wishlist.findIndex(item => item.id === product.id);
+
+    if (index > -1) {
+        wishlist.splice(index, 1);
+        heartButton.classList.remove('filled');
+    } else {
+        wishlist.push(product);
+        heartButton.classList.add('filled');
+    }
+}
+
+function showWishlist() {
+    const content = document.getElementById('content');
+    content.innerHTML = '<h1>Wishlist</h1>';
+
+    if (wishlist.length === 0) {
+        content.innerHTML += '<p>Your wishlist is empty.</p>';
+        return;
+    }
+
+    wishlist.forEach(product => {
+        const div = document.createElement('div');
+        div.className = 'product';
+        
+        const img = document.createElement('img');
+        img.src = product.thumbnail;
+        img.alt = product.title;
+        div.appendChild(img);
+        
+        const infoDiv = document.createElement('div');
+        infoDiv.classList.add('product-info');
+        
+        const title = document.createElement('h2');
+        title.textContent = product.title;
+        infoDiv.appendChild(title);
+        
+        const price = document.createElement('p');
+        price.textContent = `${product.price} USD`;
+        infoDiv.appendChild(price);
+        
+        const addButton = document.createElement('button');
+        addButton.textContent = 'Add to Cart';
+        addButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            addToCart(product);
+        });
+        infoDiv.appendChild(addButton);
+        
+        const heartButton = document.createElement('button');
+        heartButton.classList.add('heart-button');
+        heartButton.classList.add('filled');
+        heartButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            toggleWishlist(product, heartButton);
+        });
+        infoDiv.appendChild(heartButton);
+        
+        div.appendChild(infoDiv);
+        content.appendChild(div);
+    });
+}
+
 function displayProducts(products) {
     const content = document.getElementById('content');
     content.innerHTML = '<h1>Products</h1>';
@@ -116,9 +195,19 @@ function displayProducts(products) {
             addToCart(product);
         });
         infoDiv.appendChild(addButton);
+
+        const heartButton = document.createElement('button');
+        heartButton.classList.add('heart-button');
+        if (wishlist.some(item => item.id === product.id)) {
+            heartButton.classList.add('filled');
+        }
+        heartButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            toggleWishlist(product, heartButton);
+        });
+        infoDiv.appendChild(heartButton);
         
         div.appendChild(infoDiv);
-        
         content.appendChild(div);
     });
 }
@@ -162,6 +251,7 @@ function showProductDetails(product) {
         </div>
     `;
 }
+
 function searchProducts(event) {
     const query = event.target.value.trim();
     if (query === '') {
@@ -300,4 +390,61 @@ function processPurchase(event) {
 
     cart = [];
     showCart();
+}
+
+function displayRecommendedProductsByCategory(category, products) {
+    const content = document.querySelector('.recommended-products');
+    
+    const categorySection = document.createElement('div');
+    categorySection.className = 'category-section';
+    categorySection.innerHTML = `<h2>${category}</h2>`;
+    
+    products.forEach(product => {
+        const div = document.createElement('div');
+        div.className = 'product';
+        
+        const img = document.createElement('img');
+        img.src = product.thumbnail;
+        img.alt = product.title;
+        img.addEventListener('click', () => showProductDetails(product));
+        div.appendChild(img);
+        
+        const infoDiv = document.createElement('div');
+        infoDiv.classList.add('product-info');
+        
+        const title = document.createElement('h2');
+        title.textContent = product.title;
+        title.addEventListener('click', () => showProductDetails(product));
+        infoDiv.appendChild(title);
+        
+        const price = document.createElement('p');
+        price.textContent = `${product.price} USD`;
+        price.addEventListener('click', () => showProductDetails(product));
+        infoDiv.appendChild(price);
+        
+        const addButton = document.createElement('button');
+        addButton.classList.add('add-to-cart-button'); // Add this line
+        addButton.textContent = 'Add to Cart';
+        addButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            addToCart(product);
+        });
+        infoDiv.appendChild(addButton);
+
+        const heartButton = document.createElement('button');
+        heartButton.classList.add('heart-button');
+        if (wishlist.some(item => item.id === product.id)) {
+            heartButton.classList.add('filled');
+        }
+        heartButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            toggleWishlist(product, heartButton);
+        });
+        infoDiv.appendChild(heartButton);
+        
+        div.appendChild(infoDiv);
+        categorySection.appendChild(div);
+    });
+
+    content.appendChild(categorySection);
 }

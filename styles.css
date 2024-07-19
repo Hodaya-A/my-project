@@ -1,16 +1,19 @@
 :root {
-    --primary-color: #00BF63;
+    --primary-color: #fff;
     --secondary-color: #f8f8f8;
     --text-color: #333;
-    --dark-text-color: black;
+    --dark-text-color: #333;
     --light-text-color: #555;
     --white: #fff;
     --grey: #ddd;
     --hover-bg-color: #f8f8f8;
-    --header-bg-color: #00BF63;
+    --header-bg-color: #fff; /* Changed to white */
     --button-hover-bg-color: #028a3d;
     --navbar-hover-color: #028a3d;
-    --search-button-color: #FF6600;
+    --search-button-color: #f5671a; /* Search button background color */
+    --search-icon-color: #fff; /* Search icon color */
+    --primary-color: #f8f8f8; /* Updated to green */
+    --button-hover-bg-color: #026934; /* Darker green for hover */
 }
 
 body {
@@ -21,7 +24,7 @@ body {
 }
 
 header {
-    background-color: var(--header-bg-color);
+    background-color: var(--white);
     border-bottom: 1px solid var(--grey);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -31,7 +34,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    background-color: var(--white);
+    background-color: var(--primary-color);
 }
 
 .header-left {
@@ -42,8 +45,18 @@ header {
 .header-center {
     flex: 1;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+}
+
+.header-center input {
+    width: 70%;
+    padding: 10px 15px;
+    border-radius: 25px 0 0 25px;
+    border: 1px solid var(--grey);
+    border-right: none;
+    outline: none;
+    font-size: 16px;
 }
 
 .header-right {
@@ -52,26 +65,34 @@ header {
 }
 
 .header-left img.logo {
-    height: 130px;
+    height: 40px;
     margin-right: 20px;
 }
 
-.header-center input {
-    width: 60%;
+.header-left input {
+    width: 300px;
     padding: 10px;
-    border-radius: 4px;
+    border-radius: 4px 0 0 4px;
     border: 1px solid var(--grey);
 }
 
-.header-center button {
+.header-left button {
+    padding: 10px 20px;
+    border-radius: 0 25px 25px 0;
+    border: 1px solid var(--grey);
+    border-left: none;
     background-color: var(--search-button-color);
-    border: none;
-    padding: 10px 15px;
-    margin-left: -1px; /* to remove the gap between input and button */
-    border-radius: 0 4px 4px 0;
+    color: var(--search-icon-color);
     cursor: pointer;
-    color: var(--white);
     font-size: 16px;
+}
+
+.header-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    color: #666; /* Changed to gray */
 }
 
 .header-right .header-icon {
@@ -80,11 +101,23 @@ header {
     font-size: 24px;
     margin-left: 20px;
     cursor: pointer;
-    color: var(--dark-text-color);
+    color: #666; /* Changed to gray */
+}
+
+.header-right .header-icon img {
+    height: 24px;
+}
+
+.announcement-bar {
+    background-color: var(--announcement-bg-color);
+    text-align: center;
+    padding: 10px 0;
+    color: var(--announcement-text-color);
+    font-size: 14px;
 }
 
 .navbar {
-    background-color: var(--primary-color);
+    background-color: var(--white);
     border-bottom: 1px solid var(--grey);
 }
 
@@ -106,7 +139,7 @@ header {
 }
 
 .navbar ul li a {
-    color: var(--white);
+    color: var(--dark-text-color);
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s;
@@ -151,7 +184,7 @@ main {
     width: 23%;
     margin: 10px;
     padding: 20px;
-    border: 1px solid var (--grey);
+    border: 1px solid var(--grey);
     border-radius: 8px;
     background-color: var(--white);
     text-align: center;
@@ -195,6 +228,27 @@ main {
 
 .product button:hover {
     background-color: var(--button-hover-bg-color);
+}
+
+.heart-button {
+    background: var(--white);
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 24px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+    margin-left: 5px;
+}
+
+.heart-button.filled {
+    background-color: var(--primary-color);
+    color: var(--white);
 }
 
 .cart-item {
@@ -347,12 +401,12 @@ button:hover {
 
 .review p {
     margin: 5px 0;
-    color: var (--light-text-color);
+    color: var(--light-text-color);
     text-align: center;
 }
 
 .review strong {
-    color: var (--dark-text-color);
+    color: var(--dark-text-color);
 }
 
 .additional-info {
@@ -361,7 +415,42 @@ button:hover {
 
 .additional-info h2 {
     font-size: 1.5em;
-    margin-bottom: 20px;
-    color: var (--text-color);
+    margin-bottom: 20px; 
+    color: var(--text-color);
     text-align: center;
+}
+.heart-button {
+    background: var(--white);
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+    margin-left: 5px;
+    background-image: url('1.png'); /* Use the second image */
+    background-size: cover;
+}
+
+.heart-button.filled {
+    background-image: url('22.png'); /* Use the first image */
+    background-size: cover;
+}
+/* Style for the Add to Cart button */
+.add-to-cart-button {
+    background-color: #028a3d; /* Green */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s; /* Added transform for animation */
+}
+
+.add-to-cart-button:hover {
+    background-color: #026934; /* Darker green for hover */
+    transform: scale(1.05); /* Slight zoom effect on hover */
 }
