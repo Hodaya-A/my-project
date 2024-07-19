@@ -114,11 +114,52 @@ header {
     font-size: 14px;
 }
 
+
 .navbar {
     background-color: var(--white);
     border-bottom: 1px solid var(--grey);
     position: relative;
+    overflow-x: auto; /* מאפשר גלילה אופקית */
+    white-space: nowrap; /* מניעת שבירת שורה */
+    scrollbar-width: none; /* הסתרת פס הגלילה ב-Firefox */
+
 }
+.navbar::-webkit-scrollbar {
+    display: none; /* הסתרת פס הגלילה ב-Chrome, Safari, Opera */
+}
+
+.navbar ul {
+    display: inline-flex; /* שינוי לתצוגה אופקית */
+    list-style: none;
+    justify-content: flex-start; /* יישור לתחילת השורה */
+    margin: 0;
+    padding: 10px 0;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+    cursor: pointer;
+    transition: color 0.3s;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block; /* יישור בשורה אחת */
+}
+
+.navbar ul li a {
+    color: var(--dark-text-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+
+
+
+
+
+
+
+
 
 .navbar .categories-toggle {
     display: none;
@@ -129,30 +170,7 @@ header {
     cursor: pointer;
     padding: 10px 20px;
 }
-
-.navbar ul {
-    display: flex;
-    list-style: none;
-    justify-content: space-around;
-    margin: 0;
-    padding: 10px 0;
-}
-
-.navbar ul li {
-    position: relative;
-    margin: 0 15px;
-    cursor: pointer;
-    transition: color 0.3s;
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
-.navbar ul li a {
-    color: var(--dark-text-color);
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-}
+    
 
 .navbar ul li:hover {
     background-color: var(--hover-bg-color);
@@ -226,7 +244,7 @@ main {
 }
 
 .product button {
-    background-color: var(--primary-color);
+    /* background-color: var(---coslor); */
     color: var(--white);
     border: none;
     padding: 10px 20px;
@@ -235,10 +253,10 @@ main {
     transition: background-color 0.3s;
 }
 
-.product button:hover {
-    background-color: var(--button-hover-bg-color);
-}
-
+/* .product button:hover { */
+    /* background-color: var(--button-hover-bg-color); */
+/* } */
+/*  */
 .heart-button {
     background: var(--white);
     border: 2px solid var(--primary-color);
@@ -461,7 +479,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    /* transition: background-color 0.3s; */
 }
 
 button:hover {
@@ -614,7 +632,7 @@ button:hover {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s; /* Added transform for animation */
+    /* transition: background-color 0.3s, transform 0.3s; Added transform for animation */
 }
 
 .add-to-cart-button:hover {
