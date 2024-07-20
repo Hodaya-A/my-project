@@ -102,12 +102,12 @@ function displayRecommendedProductsByCategory(category, products) {
 
 function loadTrendingCategories() {
   const trendCategories = [
-      { name: "Chef's Kiss", image: "https://via.placeholder.com/150" },
-      { name: "Colorful Vintage Glassware", image: "https://via.placeholder.com/150" },
-      { name: "Creative Couples' Portraits", image: "https://via.placeholder.com/150" },
-      { name: "Garden Girl", image: "https://via.placeholder.com/150" },
-      { name: "Charm Necklaces", image: "https://via.placeholder.com/150" },
-      { name: "Chrome Decor", image: "https://via.placeholder.com/150" }
+      { name: "Fashion", image: "https://img.ltwebstatic.com/images3_abc/2024/04/23/f4/1713878671709b75008cd9ba9b0c236d772ba81fe0.png" },
+      { name: "Beauty & Care", image: "https://img.ltwebstatic.com/images3_ccc/2023/11/01/b7/169883112225bb2788cef5889939f5ebc49332471f.jpg" },
+      { name: "Technology & Electronics", image: "https://img.ltwebstatic.com/images3_ccc/2024/03/19/c4/1710828286f5c9e2a717be0ffdb1eb455bcd34bedd.png" },
+      { name: "Home & Garden", image: "https://img.ltwebstatic.com/images3_abc/2024/07/15/a0/1721029170c5cbc73e991f39abef682f5f446b335a.png" },
+      { name: "Leisure & Sports", image: "https://img.ltwebstatic.com/images3_abc/2024/06/22/ee/171905991293b81a3d93085e4784f56ec82ff55b9d.png" },
+      { name: "Grocery & Food", image: "https://img.ltwebstatic.com/images3_abc/2024/06/20/a2/17188688111b1d20c11de46f093c1b7551f7b5585c.png" }
   ];
 
   const trendCategoriesContainer = document.querySelector('.trend-categories');
