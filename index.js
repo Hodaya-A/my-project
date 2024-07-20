@@ -161,8 +161,6 @@ function showWishlist() {
         content.appendChild(div);
     });
 }
-
-
 function displayProducts(products) {
     const content = document.getElementById('content');
     content.innerHTML = '<h1>Products</h1>';
@@ -212,15 +210,6 @@ function displayProducts(products) {
         content.appendChild(div);
     });
 }
-
-
-
-
-
-
-
-
-
 function showProductDetails(product) {
     const content = document.getElementById('content');
     content.innerHTML = `
@@ -269,37 +258,6 @@ function toggleCategories() {
         categoryList.style.flexDirection = 'column';
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function searchProducts(event) {
     const query = event.target.value.trim();
     if (query === '') {
@@ -517,4 +475,3 @@ function displayRecommendedProductsByCategory(category, products) {
 
     content.appendChild(categorySection);
 }
-
