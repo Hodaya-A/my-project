@@ -421,23 +421,36 @@ function updateCartTotal() {
       totalDiv.textContent = `Total: $${calculateCartTotal()} USD`;
   }
 }
-
 function checkout() {
-  const content = document.getElementById('content');
-  content.innerHTML = `
-      <h1>Checkout</h1>
-      <form id="checkout-form">
-          <label for="address">Shipping Address:</label>
-          <input type="text" id="address" name="address" required>
-          <label for="credit-card">Credit Card Number:</label>
-          <input type="text" id="credit-card" name="credit-card" required pattern="\\d{16}" title="Please enter a valid 16-digit credit card number">
-          <button type="submit">Purchase</button>
-      </form>
-  `;
-
-  document.getElementById('checkout-form').addEventListener('submit', processPurchase);
-}
-
+    const content = document.getElementById('content');
+    content.innerHTML = `
+        <h1>Checkout</h1>
+        <form id="checkout-form">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+  
+            <label for="address">Shipping Address:</label>
+            <input type="text" id="address" name="address" required>
+  
+            <label for="id-number">ID Number:</label>
+            <input type="text" id="id-number" name="id-number" required pattern="\\d{9}" title="Please enter a valid 9-digit ID number">
+  
+            <label for="credit-card">Credit Card Number:</label>
+            <input type="text" id="credit-card" name="credit-card" required pattern="\\d{16}" title="Please enter a valid 16-digit credit card number">
+  
+            <label for="expiry-date">Expiry Date (MM/YY):</label>
+            <input type="text" id="expiry-date" name="expiry-date" required pattern="\\d{2}/\\d{2}" title="Please enter a valid expiry date in MM/YY format">
+  
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" required pattern="\\d{3}" title="Please enter a valid 3-digit CVV number">
+  
+            <button type="submit">Purchase</button>
+        </form>
+    `;
+  
+    document.getElementById('checkout-form').addEventListener('submit', processPurchase);
+  }
+  
 function changeMainImage(src) {
   document.getElementById('mainImage').src = src;
 }
