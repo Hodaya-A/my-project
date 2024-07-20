@@ -1,18 +1,39 @@
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('search').addEventListener('input', searchProducts);
-  document.getElementById('cartButton').addEventListener('click', showCart);
-  document.querySelector('.logo').addEventListener('click', loadHomePage);
-  document.getElementById('wishlistButton').addEventListener('click', showWishlist);
-  loadRecommendedProducts();
-  loadCategories();
-  loadTrendingCategories();
-});
 
 let wishlist = [];
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('search').addEventListener('input', searchProducts);
+    document.getElementById('cartButton').addEventListener('click', showCart);
+    document.querySelector('.logo').addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default anchor behavior
+        loadHomePage();
+    });
+    document.getElementById('wishlistButton').addEventListener('click', showWishlist);
+    loadHomePage(); // Load home page on initial load
+});
 
 function loadHomePage() {
-  loadRecommendedProducts();
-  document.querySelector('.recommended-products').innerHTML = ''; // Reset recommended products section
+    const content = document.getElementById('content');
+    content.innerHTML = `
+        <section class="trending">
+            <h1>Check out the season's biggest trends</h1>
+            <div class="trend-categories"></div>
+        </section>
+        <section class="carousel">
+            <div class="carousel-slide">
+                <img src="Store Sale Ad 1.png" alt="Ad 1">
+                <img src="Store Sale Ad2.png" alt="Ad 2">
+                <img src="Store Sale Ad3.png" alt="Ad 3">
+            </div>
+            <button class="carousel-prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="carousel-next" onclick="moveSlide(1)">&#10095;</button>
+        </section>
+        <section class="recommended-products">
+            <!-- Content will be injected here by JavaScript -->
+        </section>
+    `;
+    loadTrendingCategories();
+    loadRecommendedProducts();
+    showSlides(slideIndex);
 }
 
 function loadRecommendedProducts() {
