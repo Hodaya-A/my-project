@@ -466,3 +466,27 @@ function processPurchase(event) {
   cart = [];
   showCart();
 }
+let slideIndex = 0;
+showSlides(slideIndex);
+setInterval(() => moveSlide(1), 3000); // Add this line for auto-slide every 3 seconds
+
+function moveSlide(n) {
+    showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+    let slides = document.querySelectorAll('.carousel-slide img');
+    if (n >= slides.length) {
+        slideIndex = 0;
+    }
+    if (n < 0) {
+        slideIndex = slides.length - 1;
+    }
+    slides.forEach((slide, index) => {
+        slide.style.display = 'none';
+    });
+    slides[slideIndex].style.display = 'block';
+}
+
+
+
