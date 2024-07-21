@@ -34,10 +34,20 @@ function loadHomePage() {
     `;
     loadTrendingCategories();
     loadRecommendedProducts();
-    showSlides(slideIndex);
-}
 
-function loadRecommendedProducts() {
+    // בדוק את המצב של האלמנטים לפני הפעלת הפונקציה showSlides
+    const checkSlidesLoaded = setInterval(() => {
+        let slides = document.querySelectorAll('.carousel-slide img');
+        console.log(slides); // Log the slides to see if they are loaded
+        if (slides.length) {
+            clearInterval(checkSlidesLoaded);
+            showSlides(slideIndex);
+            setInterval(() => moveSlide(1), 3000); // Add this line for auto-slide every 3 seconds
+        } else {
+            console.error('No slides found');
+        }
+    }, 500); // בדוק כל חצי שנייה אם האלמנטים נטענו
+}function loadRecommendedProducts() {
     const predefinedCategories = {
         "mens-shirts": "men's shirts",
         "mens-shoes": "men's shoes",
@@ -492,15 +502,20 @@ function processPurchase(event) {
 }
 
 let slideIndex = 0;
-showSlides(slideIndex);
-setInterval(() => moveSlide(1), 3000); // Add this line for auto-slide every 3 seconds
 
 function moveSlide(n) {
-    showSlides(slideIndex += n);
+    let slides = document.querySelectorAll('.carousel-slide img');
+    if (slides.length) {
+        showSlides(slideIndex += n);
+    }
 }
 
 function showSlides(n) {
     let slides = document.querySelectorAll('.carousel-slide img');
+    if (!slides.length) {
+        console.error('No slides found');
+        return; // Check if slides exist
+    }
     if (n >= slides.length) {
         slideIndex = 0;
     }
