@@ -3,12 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('search').addEventListener('input', searchProducts);
     document.getElementById('cartButton').addEventListener('click', showCart);
     document.querySelector('.logo').addEventListener('click', (event) => {
-        event.preventDefault(); // Prevent default anchor behavior
+        event.preventDefault(); 
         loadHomePage();
-        setInterval(() => moveSlide(1), 3000); // Add this line for auto-slide every 3 seconds
+        setInterval(() => moveSlide(1), 3000); 
     });
     document.getElementById('wishlistButton').addEventListener('click', showWishlist);
-    loadHomePage(); // Load home page on initial load
+    loadHomePage(); 
 });
 
 function loadHomePage() {
@@ -338,14 +338,14 @@ function toggleCategories() {
 function searchProducts(event) {
     const query = event.target.value.trim();
     if (query === '') {
-        loadRecommendedProducts(); // Load recommended products if search query is empty
+        loadRecommendedProducts(); 
         return;
     }
 
     fetch(`https://dummyjson.com/products/search?q=${encodeURIComponent(query)}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data); // Debugging log
+            console.log(data);
             if (data.products.length === 0) {
                 const content = document.getElementById('content');
                 content.innerHTML = '<p>No products found</p>';
@@ -506,7 +506,7 @@ function processPurchase(event) {
 let slideIndex = 0;
 function showSlides(n) {
     let slides = document.querySelectorAll('.carousel-slide img');
-    if (slides.length === 0) return; // אם אין תמונות, לא להמשיך
+    if (slides.length === 0) return; 
     if (n >= slides.length) {
         slideIndex = 0;
     }
@@ -535,3 +535,4 @@ function loadFashionSubCategory(subCategory) {
 function moveSlide(n) {
     showSlides(slideIndex += n);
 }
+setInterval(() => moveSlide(1), 3000);
