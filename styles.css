@@ -182,7 +182,6 @@ main {
     
     padding: 150px 30px 30px 30px; /* Add top padding to compensate for fixed header and navbar */
 }
-
 /* Trending Section Styles */
 .trending {
     text-align: center;
@@ -193,18 +192,20 @@ main {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    gap: 20px; /* Add some space between the items */
 }
 
 .trend-category {
     text-align: center;
-    width: 200px; /* Increase the width */
+    width: 150px;
     margin: 20px;
 }
 
 .trend-category img {
     border-radius: 50%;
-    width: 100%;
-    height: auto;
+    width: 150px; /* Ensure the width matches the height for perfect circles */
+    height: 150px; /* Ensure the height matches the width for perfect circles */
+    object-fit: cover; /* Ensure the image maintains its aspect ratio and cover the element completely */
     transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
 }
 
@@ -214,6 +215,11 @@ main {
     filter: brightness(1.2); /* Increase brightness */
 }
 
+.trend-category p {
+    margin-top: 10px;
+    font-size: 1em;
+    color: var(--text-color);
+}
 
 /* Recommended Products Section Styles */
 .recommended-products {
