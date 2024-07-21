@@ -215,9 +215,8 @@ main {
 
 .recommended-products {
     display: flex;
-    flex-direction: column; /* Changed to column for vertical scroll */
-    overflow-y: auto; /* Enable vertical scrolling */
-    height: 100vh; /* Full viewport height for scrolling */
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .product {
@@ -526,7 +525,7 @@ button:hover {
 
 .review p {
     margin: 5px 0;
-    color: var(--light-text-color);
+    color: var (--light-text-color);
     text-align: center;
 }
 

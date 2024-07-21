@@ -1,3 +1,5 @@
+// index.js
+
 let wishlist = [];
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('search').addEventListener('input', searchProducts);
@@ -31,29 +33,11 @@ function loadHomePage() {
         </section>
     `;
     loadTrendingCategories();
- HEAD
-    loadAllCategories();
+    loadRecommendedProducts();
     showSlides(slideIndex);
 }
 
-function loadAllCategories() {
-
-    loadRecommendedProducts();
-
-    // בדוק את המצב של האלמנטים לפני הפעלת הפונקציה showSlides
-    const checkSlidesLoaded = setInterval(() => {
-        let slides = document.querySelectorAll('.carousel-slide img');
-        console.log(slides); // Log the slides to see if they are loaded
-        if (slides.length) {
-            clearInterval(checkSlidesLoaded);
-            showSlides(slideIndex);
-            setInterval(() => moveSlide(1), 3000); // Add this line for auto-slide every 3 seconds
-        } else {
-            console.error('No slides found');
-        }
-    }, 500); // בדוק כל חצי שנייה אם האלמנטים נטענו
-}function loadRecommendedProducts() {
-
+function loadRecommendedProducts() {
     const predefinedCategories = {
         "mens-shirts": "men's shirts",
         "mens-shoes": "men's shoes",
@@ -81,13 +65,7 @@ function loadAllCategories() {
         "groceries": "groceries"
     };
 
-    const content = document.querySelector('.recommended-products');
     Object.keys(predefinedCategories).forEach(category => {
-        const categoryDiv = document.createElement('div');
-        categoryDiv.className = 'category-section';
-        categoryDiv.id = category;
-        categoryDiv.innerHTML = `<h2>${predefinedCategories[category]}</h2>`;
-        content.appendChild(categoryDiv);
         loadRecommendedProductsByCategory(predefinedCategories[category], category);
     });
 }
@@ -102,7 +80,9 @@ function loadRecommendedProductsByCategory(apiCategory, htmlCategory) {
 }
 
 function displayRecommendedProductsByCategory(category, products) {
+    const content = document.querySelector('.recommended-products');
     const categorySection = document.getElementById(category);
+
     if (categorySection) {
         products.forEach(product => {
             const div = document.createElement('div');
@@ -155,12 +135,12 @@ function displayRecommendedProductsByCategory(category, products) {
 
 function loadTrendingCategories() {
     const trendCategories = [
-        { name: "Fashion", image: "https://img.ltwebstatic.com/images3_abc/2024/04/23/f4/1713878671709b75008cd9ba9b0c236d772ba81fe0.png" },
-        { name: "Beauty & Care", image: "https://img.ltwebstatic.com/images3_ccc/2023/11/01/b7/169883112225bb2788cef5889939f5ebc49332471f.jpg" },
-        { name: "Technology & Electronics", image: "https://img.ltwebstatic.com/images3_ccc/2024/03/19/c4/1710828286f5c9e2a717be0ffdb1eb455bcd34bedd.png" },
-        { name: "Home & Garden", image: "https://img.ltwebstatic.com/images3_abc/2024/07/15/a0/1721029170c5cbc73e991f39abef682f5f446b335a.png" },
-        { name: "Leisure & Sports", image: "https://img.ltwebstatic.com/images3_abc/2024/06/22/ee/171905991293b81a3d93085e4784f56ec82ff55b9d.png" },
-        { name: "Grocery & Food", image: "https://img.ltwebstatic.com/images3_abc/2024/06/20/a2/17188688111b1d20c11de46f093c1b7551f7b5585c.png" }
+        { name: "Fashion", image: "https://img.ltwebstatic.com/images3_abc/2024/04/23/f4/1713878671709b75008cd9ba9b0c236d772ba81fe0.png", subCategories: ["mens-shirts", "mens-shoes", "mens-watches", "womens-bags", "womens-dresses", "womens-jewellery", "womens-shoes", "womens-watches"] },
+        { name: "Beauty & Care", image: "https://img.ltwebstatic.com/images3_ccc/2023/11/01/b7/169883112225bb2788cef5889939f5ebc49332471f.jpg", subCategories: ["beauty", "skin-care", "fragrances"] },
+        { name: "Technology & Electronics", image: "https://img.ltwebstatic.com/images3_ccc/2024/03/19/c4/1710828286f5c9e2a717be0ffdb1eb455bcd34bedd.png", subCategories: ["laptops", "smartphones", "tablets", "mobile-accessories"] },
+        { name: "Home & Garden", image: "https://img.ltwebstatic.com/images3_abc/2024/07/15/a0/1721029170c5cbc73e991f39abef682f5f446b335a.png", subCategories: ["furniture", "home-decoration", "kitchen-accessories"] },
+        { name: "Leisure & Sports", image: "https://img.ltwebstatic.com/images3_abc/2024/06/22/ee/171905991293b81a3d93085e4784f56ec82ff55b9d.png", subCategories: ["sports-accessories", "motorcycle", "vehicle"] },
+        { name: "Grocery & Food", image: "https://img.ltwebstatic.com/images3_abc/2024/06/20/a2/17188688111b1d20c11de46f093c1b7551f7b5585c.png", subCategories: ["groceries"] }
     ];
 
     const trendCategoriesContainer = document.querySelector('.trend-categories');
@@ -171,6 +151,7 @@ function loadTrendingCategories() {
         const img = document.createElement('img');
         img.src = category.image;
         img.alt = category.name;
+        img.addEventListener('click', () => loadProductsBySubCategories(category.subCategories));
         categoryDiv.appendChild(img);
 
         const name = document.createElement('p');
@@ -179,6 +160,21 @@ function loadTrendingCategories() {
 
         trendCategoriesContainer.appendChild(categoryDiv);
     });
+}
+
+function loadProductsBySubCategories(subCategories) {
+    const promises = subCategories.map(subCategory => 
+        fetch(`https://dummyjson.com/products/category/${encodeURIComponent(subCategory)}`)
+        .then(response => response.json())
+        .then(data => data.products)
+    );
+
+    Promise.all(promises)
+        .then(results => {
+            const allProducts = results.flat();
+            displayProducts(allProducts);
+        })
+        .catch(error => console.error('Error fetching products by sub-categories:', error));
 }
 
 function toggleWishlist(product, heartButton) {
@@ -465,6 +461,7 @@ function updateCartTotal() {
         totalDiv.textContent = `Total: $${calculateCartTotal()} USD`;
     }
 }
+
 function checkout() {
     const content = document.getElementById('content');
     content.innerHTML = `
@@ -512,20 +509,15 @@ function processPurchase(event) {
 }
 
 let slideIndex = 0;
+showSlides(slideIndex);
+setInterval(() => moveSlide(1), 3000); // Add this line for auto-slide every 3 seconds
 
 function moveSlide(n) {
-    let slides = document.querySelectorAll('.carousel-slide img');
-    if (slides.length) {
-        showSlides(slideIndex += n);
-    }
+    showSlides(slideIndex += n);
 }
 
 function showSlides(n) {
     let slides = document.querySelectorAll('.carousel-slide img');
-    if (!slides.length) {
-        console.error('No slides found');
-        return; // Check if slides exist
-    }
     if (n >= slides.length) {
         slideIndex = 0;
     }
