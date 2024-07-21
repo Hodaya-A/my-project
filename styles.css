@@ -47,7 +47,7 @@ header {
 }
 
 .header-left img.logo {
-    height: 40px; /* Adjust the height as needed */
+    height: 110px; /* Adjust the height as needed */
     margin-right: 20px;
 }
 
@@ -101,7 +101,7 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
-    top: 64px; /* Adjust this value if header-top height changes */
+    top: 110px; /* Adjust this value if header-top height changes */
     z-index: 1000;
 }
 
