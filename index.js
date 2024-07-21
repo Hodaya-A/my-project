@@ -31,13 +31,13 @@ function loadHomePage() {
         </section>
     `;
     loadTrendingCategories();
-<<<<<<< HEAD
+ HEAD
     loadAllCategories();
     showSlides(slideIndex);
 }
 
 function loadAllCategories() {
-=======
+
     loadRecommendedProducts();
 
     // בדוק את המצב של האלמנטים לפני הפעלת הפונקציה showSlides
@@ -53,7 +53,7 @@ function loadAllCategories() {
         }
     }, 500); // בדוק כל חצי שנייה אם האלמנטים נטענו
 }function loadRecommendedProducts() {
->>>>>>> 5bbbaa1522de7961e1fca3a1b174688ab69195d9
+
     const predefinedCategories = {
         "mens-shirts": "men's shirts",
         "mens-shoes": "men's shoes",
