@@ -1,5 +1,3 @@
-// index.js
-
 let wishlist = [];
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('search').addEventListener('input', searchProducts);
@@ -33,11 +31,11 @@ function loadHomePage() {
         </section>
     `;
     loadTrendingCategories();
-    loadRecommendedProducts();
+    loadAllCategories();
     showSlides(slideIndex);
 }
 
-function loadRecommendedProducts() {
+function loadAllCategories() {
     const predefinedCategories = {
         "mens-shirts": "men's shirts",
         "mens-shoes": "men's shoes",
@@ -65,7 +63,13 @@ function loadRecommendedProducts() {
         "groceries": "groceries"
     };
 
+    const content = document.querySelector('.recommended-products');
     Object.keys(predefinedCategories).forEach(category => {
+        const categoryDiv = document.createElement('div');
+        categoryDiv.className = 'category-section';
+        categoryDiv.id = category;
+        categoryDiv.innerHTML = `<h2>${predefinedCategories[category]}</h2>`;
+        content.appendChild(categoryDiv);
         loadRecommendedProductsByCategory(predefinedCategories[category], category);
     });
 }
@@ -80,9 +84,7 @@ function loadRecommendedProductsByCategory(apiCategory, htmlCategory) {
 }
 
 function displayRecommendedProductsByCategory(category, products) {
-    const content = document.querySelector('.recommended-products');
     const categorySection = document.getElementById(category);
-
     if (categorySection) {
         products.forEach(product => {
             const div = document.createElement('div');

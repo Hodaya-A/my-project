@@ -215,8 +215,9 @@ main {
 
 .recommended-products {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    flex-direction: column; /* Changed to column for vertical scroll */
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: 100vh; /* Full viewport height for scrolling */
 }
 
 .product {
