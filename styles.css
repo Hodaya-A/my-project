@@ -195,7 +195,7 @@ main {
 
 .trend-category {
     text-align: center;
-    width: 150px;
+    width: 200px; /* Increase the width */
     margin: 20px;
 }
 
@@ -203,7 +203,15 @@ main {
     border-radius: 50%;
     width: 100%;
     height: auto;
+    transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
 }
+
+.trend-category img:hover {
+    transform: scale(1.1); /* Increase the scale on hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Add shadow */
+    filter: brightness(1.2); /* Increase brightness */
+}
+
 
 /* Recommended Products Section Styles */
 .recommended-products {
