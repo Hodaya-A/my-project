@@ -290,6 +290,7 @@ function showProductDetails(product) {
             <p class="description">${product.description}</p>
             <p class="price">${product.price} USD</p>
             <button onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">Add to Cart</button>
+            <button class="heart-button" onclick="toggleWishlistFromDetails(${JSON.stringify(product).replace(/"/g, '&quot;')}, this)"></button>
             <div class="product-reviews">
                 <h2>Customer Reviews</h2>
                 ${product.reviews.map(review => `
@@ -314,6 +315,14 @@ function showProductDetails(product) {
             </div>
         </div>
     `;
+    const heartButton = content.querySelector('.heart-button');
+    if (wishlist.some(item => item.id === product.id)) {
+        heartButton.classList.add('filled');
+    }
+}
+
+function toggleWishlistFromDetails(product, heartButton) {
+    toggleWishlist(product, heartButton);
 }
 
 function toggleCategories() {
