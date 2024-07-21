@@ -367,6 +367,19 @@ main {
     margin-bottom: 30px;
     justify-content: center;
 }
+.trend-category img {
+    border-radius: 50%;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
+}
+
+.trend-category img:hover {
+    transform: scale(1.05); /* הגדלה של 5% */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* הוספת צל */
+    filter: brightness(1.2); /* הגברת הבהירות */
+}
+
 
 .product-images .main-image {
     width: 600px;
