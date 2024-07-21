@@ -529,3 +529,17 @@ function showSlides(n) {
     });
     slides[slideIndex].style.display = 'block';
 }
+function loadFashionSubCategory(subCategory) {
+    let subCategories = {
+        'men': ['mens-shirts', 'mens-shoes', 'mens-watches'],
+        'women': ['womens-bags', 'womens-dresses', 'womens-jewellery', 'womens-shoes', 'womens-watches', 'tops'],
+        'shared': ['sunglasses']
+    };
+
+    if (subCategories[subCategory]) {
+        loadProductsBySubCategories(subCategories[subCategory]);
+    } else {
+        console.error('Sub-category not found');
+    }
+}
+
