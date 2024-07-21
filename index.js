@@ -334,12 +334,7 @@ function showProductDetails(product) {
 
 function toggleCategories() {
     const categoryList = document.getElementById('category-list');
-    if (categoryList.style.display === 'flex' || categoryList.style.display === 'block') {
-        categoryList.style.display = 'none';
-    } else {
-        categoryList.style.display = 'flex';
-        categoryList.style.flexDirection = 'column';
-    }
+    categoryList.classList.toggle('show');
 }
 
 function searchProducts(event) {

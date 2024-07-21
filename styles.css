@@ -632,27 +632,29 @@ footer {
 
 @media (max-width: 768px) {
     /* Styles for the category toggle button */
-.categories-toggle {
-    display: block;
-    cursor: pointer;
-    padding: 10px;
-    font-weight: bold;
-}
-
-.categories-toggle:hover + ul,
-.navbar ul:hover {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.navbar ul {
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-left: 20px;
-}
-
+    .categories-toggle {
+        display: block;
+        cursor: pointer;
+        padding: 10px;
+        font-weight: bold;
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        z-index: 1100;
+        background-color: var(--white);
+        border: 1px solid var(--grey);
+        border-radius: 5px;
+    }
+    .navbar ul {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 20px;
+        /* margin-top: 60px; Adjust this value if needed */
+    }
+    .navbar ul.show {
+        display: flex;
+    }
     .header-top {
         flex-direction: column;
         align-items: flex-start;
