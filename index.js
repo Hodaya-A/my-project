@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.logo').addEventListener('click', (event) => {
         event.preventDefault(); // Prevent default anchor behavior
         loadHomePage();
+        setInterval(() => moveSlide(1), 3000); // Add this line for auto-slide every 3 seconds
+
     });
     document.getElementById('wishlistButton').addEventListener('click', showWishlist);
     loadHomePage(); // Load home page on initial load
@@ -507,17 +509,10 @@ function processPurchase(event) {
     cart = [];
     showCart();
 }
-
 let slideIndex = 0;
-showSlides(slideIndex);
-setInterval(() => moveSlide(1), 3000); // Add this line for auto-slide every 3 seconds
-
-function moveSlide(n) {
-    showSlides(slideIndex += n);
-}
-
 function showSlides(n) {
     let slides = document.querySelectorAll('.carousel-slide img');
+    if (slides.length === 0) return; // אם אין תמונות, לא להמשיך
     if (n >= slides.length) {
         slideIndex = 0;
     }
@@ -528,4 +523,8 @@ function showSlides(n) {
         slide.style.display = 'none';
     });
     slides[slideIndex].style.display = 'block';
+}
+
+function moveSlide(n) {
+    showSlides(slideIndex += n);
 }
