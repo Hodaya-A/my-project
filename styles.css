@@ -103,6 +103,7 @@ header {
     width: 100%;
     top: 110px; /* Adjust this value if header-top height changes */
     z-index: 1000;
+    
 }
 
 .navbar ul {
@@ -178,7 +179,8 @@ header {
 
 /* Main Content Styles */
 main {
-    padding: 100px 30px 30px 30px; /* Add top padding to compensate for fixed header and navbar */
+    
+    padding: 150px 30px 30px 30px; /* Add top padding to compensate for fixed header and navbar */
 }
 
 /* Trending Section Styles */
