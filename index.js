@@ -1,5 +1,3 @@
-// index.js
-
 let wishlist = [];
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('search').addEventListener('input', searchProducts);
@@ -8,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault(); // Prevent default anchor behavior
         loadHomePage();
         setInterval(() => moveSlide(1), 3000); // Add this line for auto-slide every 3 seconds
-
     });
     document.getElementById('wishlistButton').addEventListener('click', showWishlist);
     loadHomePage(); // Load home page on initial load
@@ -31,7 +28,8 @@ function loadHomePage() {
             <button class="carousel-next" onclick="moveSlide(1)">&#10095;</button>
         </section>
         <section class="recommended-products">
-            <!-- Content will be injected here by JavaScript -->
+            <h1>Recommended Products</h1>
+            <div id="recommended-products-container"></div>
         </section>
     `;
     loadTrendingCategories();
@@ -40,99 +38,85 @@ function loadHomePage() {
 }
 
 function loadRecommendedProducts() {
-    const predefinedCategories = {
-        "mens-shirts": "men's shirts",
-        "mens-shoes": "men's shoes",
-        "mens-watches": "men's watches",
-        "womens-bags": "women's bags",
-        "womens-dresses": "women's dresses",
-        "womens-jewellery": "women's jewellery",
-        "womens-shoes": "women's shoes",
-        "womens-watches": "women's watches",
-        "tops": "tops",
-        "sunglasses": "sunglasses",
-        "beauty": "beauty",
-        "skin-care": "skin care",
-        "fragrances": "fragrances",
-        "laptops": "laptops",
-        "smartphones": "smartphones",
-        "tablets": "tablets",
-        "mobile-accessories": "mobile accessories",
-        "furniture": "furniture",
-        "home-decoration": "home decoration",
-        "kitchen-accessories": "kitchen accessories",
-        "sports-accessories": "sports accessories",
-        "motorcycle": "motorcycle",
-        "vehicle": "vehicle",
-        "groceries": "groceries"
-    };
+    const categories = [
+        'mens-shirts', 'mens-shoes', 'mens-watches', 
+        'womens-bags', 'womens-dresses', 'womens-jewellery', 
+        'womens-shoes', 'womens-watches', 'tops', 
+        'sunglasses', 'beauty', 'skin-care', 
+        'fragrances', 'laptops', 'smartphones', 
+        'tablets', 'mobile-accessories', 'furniture', 
+        'home-decoration', 'kitchen-accessories', 'sports-accessories', 
+        'motorcycle', 'vehicle', 'groceries'
+    ];
 
-    Object.keys(predefinedCategories).forEach(category => {
-        loadRecommendedProductsByCategory(predefinedCategories[category], category);
+    categories.forEach(category => {
+        loadRecommendedProductsByCategory(category);
     });
 }
 
-function loadRecommendedProductsByCategory(apiCategory, htmlCategory) {
-    fetch(`https://dummyjson.com/products/category/${encodeURIComponent(apiCategory)}?limit=3`)
+function loadRecommendedProductsByCategory(category) {
+    fetch(`https://dummyjson.com/products/category/${encodeURIComponent(category)}?limit=3`)
         .then(response => response.json())
         .then(data => {
-            displayRecommendedProductsByCategory(htmlCategory, data.products);
+            displayRecommendedProductsByCategory(category, data.products);
         })
-        .catch(error => console.error(`Error fetching recommended products for category ${apiCategory}:`, error));
+        .catch(error => console.error(`Error fetching recommended products for category ${category}:`, error));
 }
 
 function displayRecommendedProductsByCategory(category, products) {
-    const content = document.querySelector('.recommended-products');
-    const categorySection = document.getElementById(category);
+    const container = document.getElementById('recommended-products-container');
+    const categorySection = document.createElement('div');
+    categorySection.className = 'category-section';
+    categorySection.innerHTML = `<h2>${category}</h2>`;
+    
+    products.forEach(product => {
+        const div = document.createElement('div');
+        div.className = 'product';
 
-    if (categorySection) {
-        products.forEach(product => {
-            const div = document.createElement('div');
-            div.className = 'product';
+        const img = document.createElement('img');
+        img.src = product.thumbnail;
+        img.alt = product.title;
+        img.addEventListener('click', () => showProductDetails(product));
+        div.appendChild(img);
 
-            const img = document.createElement('img');
-            img.src = product.thumbnail;
-            img.alt = product.title;
-            img.addEventListener('click', () => showProductDetails(product));
-            div.appendChild(img);
+        const infoDiv = document.createElement('div');
+        infoDiv.classList.add('product-info');
 
-            const infoDiv = document.createElement('div');
-            infoDiv.classList.add('product-info');
+        const title = document.createElement('h2');
+        title.textContent = product.title;
+        title.addEventListener('click', () => showProductDetails(product));
+        infoDiv.appendChild(title);
 
-            const title = document.createElement('h2');
-            title.textContent = product.title;
-            title.addEventListener('click', () => showProductDetails(product));
-            infoDiv.appendChild(title);
+        const price = document.createElement('p');
+        price.textContent = `${product.price} USD`;
+        price.addEventListener('click', () => showProductDetails(product));
+        infoDiv.appendChild(price);
 
-            const price = document.createElement('p');
-            price.textContent = `${product.price} USD`;
-            price.addEventListener('click', () => showProductDetails(product));
-            infoDiv.appendChild(price);
-
-            const addButton = document.createElement('button');
-            addButton.classList.add('add-to-cart-button');
-            addButton.textContent = 'Add to Cart';
-            addButton.addEventListener('click', (event) => {
-                event.stopPropagation();
-                addToCart(product);
-            });
-            infoDiv.appendChild(addButton);
-
-            const heartButton = document.createElement('button');
-            heartButton.classList.add('heart-button');
-            if (wishlist.some(item => item.id === product.id)) {
-                heartButton.classList.add('filled');
-            }
-            heartButton.addEventListener('click', (event) => {
-                event.stopPropagation();
-                toggleWishlist(product, heartButton);
-            });
-            infoDiv.appendChild(heartButton);
-
-            div.appendChild(infoDiv);
-            categorySection.appendChild(div);
+        const addButton = document.createElement('button');
+        addButton.classList.add('add-to-cart-button');
+        addButton.textContent = 'Add to Cart';
+        addButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            addToCart(product);
         });
-    }
+        infoDiv.appendChild(addButton);
+
+        const heartButton = document.createElement('button');
+        heartButton.classList.add('heart-button');
+        if (wishlist.some(item => item.id === product.id)) {
+            heartButton.classList.add('filled');
+        }
+        heartButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            toggleWishlist(product, heartButton);
+        });
+        infoDiv.appendChild(heartButton);
+
+        div.appendChild(infoDiv);
+        categorySection.appendChild(div);
+    });
+
+    container.appendChild(categorySection);
 }
 
 function loadTrendingCategories() {
@@ -334,7 +318,12 @@ function showProductDetails(product) {
 
 function toggleCategories() {
     const categoryList = document.getElementById('category-list');
-    categoryList.classList.toggle('show');
+    if (categoryList.style.display === 'flex' || categoryList.style.display === 'block') {
+        categoryList.style.display = 'none';
+    } else {
+        categoryList.style.display = 'flex';
+        categoryList.style.flexDirection = 'column';
+    }
 }
 
 function searchProducts(event) {
@@ -504,6 +493,7 @@ function processPurchase(event) {
     cart = [];
     showCart();
 }
+
 let slideIndex = 0;
 function showSlides(n) {
     let slides = document.querySelectorAll('.carousel-slide img');
@@ -532,7 +522,6 @@ function loadFashionSubCategory(subCategory) {
         console.error('Sub-category not found');
     }
 }
-
 
 function moveSlide(n) {
     showSlides(slideIndex += n);
