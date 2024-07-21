@@ -745,3 +745,29 @@ footer {
         margin: 5px;
     }
 }
+.sub-categories {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.sub-category {
+    text-align: center;
+    width: 150px;
+    margin: 20px;
+}
+
+.sub-category img {
+    border-radius: 50%;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
+    cursor: pointer;
+}
+
+.sub-category img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.2);
+}
