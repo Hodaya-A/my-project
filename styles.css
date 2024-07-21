@@ -13,8 +13,6 @@
     --search-button-color: #f5671a;
     --search-icon-color: #fff;
 }
-
-/* General Styles */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -22,7 +20,6 @@ body {
     background-color: #f4f4f9;
 }
 
-/* Header Styles */
 header {
     background-color: var(--white);
     border-bottom: 1px solid var(--grey);
@@ -47,7 +44,7 @@ header {
 }
 
 .header-left img.logo {
-    height: 110px; /* Adjust the height as needed */
+    height: 110px; 
     margin-right: 20px;
 }
 
@@ -86,7 +83,7 @@ header {
 
 .header-icon i {
     font-size: 24px;
-    color: var(--dark-text-color); /* Changed to dark grey */
+    color: var(--dark-text-color); 
 }
 
 .header-icon {
@@ -101,7 +98,7 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
-    top: 110px; /* Adjust this value if header-top height changes */
+    top: 110px; 
     z-index: 1000;
     
 }
@@ -177,12 +174,12 @@ header {
     display: block;
 }
 
-/* Main Content Styles */
 main {
     
-    padding: 150px 30px 30px 30px; /* Add top padding to compensate for fixed header and navbar */
+    padding: 150px 30px 30px 30px; 
 }
-/* Trending Section Styles */
+
+
 .trending {
     text-align: center;
     margin-bottom: 30px;
@@ -190,9 +187,10 @@ main {
 
 .trend-categories {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px; /* Add some space between the items */
+    justify-content: nowrap;
+    gap: 20px; 
+    overflow-x: auto;
+
 }
 
 .trend-category {
@@ -203,16 +201,16 @@ main {
 
 .trend-category img {
     border-radius: 50%;
-    width: 150px; /* Ensure the width matches the height for perfect circles */
-    height: 150px; /* Ensure the height matches the width for perfect circles */
-    object-fit: cover; /* Ensure the image maintains its aspect ratio and cover the element completely */
+    width: 150px; 
+    height: 150px; 
+    object-fit: cover;
     transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
 }
 
 .trend-category img:hover {
-    transform: scale(1.1); /* Increase the scale on hover */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Add shadow */
-    filter: brightness(1.2); /* Increase brightness */
+    transform: scale(1.1); /
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); 
+    filter: brightness(1.2);
 }
 
 .trend-category p {
@@ -221,7 +219,7 @@ main {
     color: var(--text-color);
 }
 
-/* Recommended Products Section Styles */
+
 .recommended-products {
     display: flex;
     justify-content: space-around;
@@ -276,22 +274,21 @@ main {
     justify-content: center;
     transition: background-color 0.3s, color 0.3s;
     margin-left: 5px;
-    background-image: url('1.png'); /* Use the second image */
+    background-image: url('1.png');
     background-size: cover;
 }
 
 .heart-button:hover {
-    background-color: var(--white); /* Change background to white */
-    /* color: var(--primary-color); Change color to primary color */
+    background-color: var(--white); 
+    
 }
 
 .heart-button.filled {
-    background-image: url('22.png'); /* Use the first image */
+    background-image: url('22.png'); 
     background-size: cover;
 }
-/* Add to Cart Button Styles */
 .add-to-cart-button {
-    background-color: #028a3d; /* Green */
+    background-color: #028a3d; 
     color: white;
     border: none;
     padding: 10px 20px;
@@ -301,11 +298,10 @@ main {
 }
 
 .add-to-cart-button:hover {
-    background-color: #026934; /* Darker green for hover */
-    transform: scale(1.05); /* Slight zoom effect on hover */
+    background-color: #026934;
+    transform: scale(1.05);  
 }
 
-/* Cart Item Styles */
 .cart-item {
     border: 1px solid var(--grey);
     padding: 15px;
@@ -351,7 +347,6 @@ main {
     margin: 20px 0;
 }
 
-/* Product Details Styles */
 .product-details {
     margin: 40px;
 }
@@ -377,9 +372,9 @@ main {
 }
 
 .trend-category img:hover {
-    transform: scale(1.05); /* הגדלה של 5% */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* הוספת צל */
-    filter: brightness(1.2); /* הגברת הבהירות */
+    transform: scale(1.05); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.2); 
 }
 
 
@@ -426,21 +421,20 @@ main {
 }
 
 button {
-    background-color: #028a3d; /* Green */
+    background-color: #028a3d; 
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s; /* Added transform for animation */
+    transition: background-color 0.3s, transform 0.3s; 
 }
 
 button:hover {
-    background-color: #026934; /* Darker green for hover */
-    transform: scale(1.05); /* Slight zoom effect on hover */
+    background-color: #026934; 
+    transform: scale(1.05); 
 }
 
-/* Product Reviews Styles */
 .product-reviews {
     margin-top: 40px;
 }
@@ -468,7 +462,6 @@ button:hover {
     color: var(--dark-text-color);
 }
 
-/* Additional Information Styles */
 .additional-info {
     margin-top: 40px;
 }
@@ -480,7 +473,6 @@ button:hover {
     text-align: center;
 }
 
-/* Footer Styles */
 footer {
     background-color: var(--primary-color);
     color: var(--white);
@@ -561,7 +553,6 @@ footer {
     width: 24px;
 }
 
-/* Checkout Form Styles */
 #checkout-form {
     display: flex;
     flex-direction: column;
@@ -589,7 +580,6 @@ footer {
     cursor: pointer;
 }
 
-/* Carousel Styles */
 .carousel {
     position: relative;
     width: 100%;
@@ -597,20 +587,20 @@ footer {
     margin: auto;
     overflow: hidden;
     border-radius: 10px;
-    height: 300px; /* Set the height to a smaller value */
+    height: 300px;
 }
 
 .carousel-slide {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    height: 100%; /* Ensure the slide takes full height */
+    height: 100%; 
 }
 
 .carousel-slide img {
     width: 100%;
-    height: 100%; /* Ensure the image takes full height */
+    height: 100%; 
     border-radius: 10px;
-    object-fit: cover; /* Ensure the image covers the area without distortion */
+    object-fit: cover; 
 }
 
 .carousel-prev, .carousel-next {
@@ -641,13 +631,11 @@ footer {
 .carousel-prev:hover, .carousel-next:hover {
     background-color: rgba(0,0,0,0.8);
 }
-/* Styles for the category toggle button */
 .categories-toggle {
     display: none;
 }
 
 @media (max-width: 768px) {
-    /* Styles for the category toggle button */
     .categories-toggle {
         display: block;
         cursor: pointer;
@@ -666,10 +654,13 @@ footer {
         flex-direction: column;
         align-items: flex-start;
         padding-left: 20px;
-        /* margin-top: 60px; Adjust this value if needed */
     }
     .navbar ul.show {
         display: flex;
+    }
+    .header{
+        top: 110px; 
+
     }
     .header-top {
         flex-direction: column;
@@ -748,16 +739,16 @@ footer {
         height: auto;
         margin: 5px;
     }
+    main {
+        padding-top: 250px; 
+    }
 }
-/* Add this to your styles.css file */
-
 .recommended-products {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 20px;
 }
-
 .product {
     width: 23%;
     margin: 10px;
@@ -803,8 +794,6 @@ footer {
     color: var(--text-color);
     width: 100%;
 }
-/* Add this to your styles.css file */
-
 .recommended-products {
     display: flex;
     flex-wrap: wrap;
